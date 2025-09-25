@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main.js" defer>
+  </script>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body>
+  <main class="app">
+    <h1>One-Timer Click Game</h1>
+    <p>Press the Start Round button and try to stop the timer before it reaches 0 seconds. The closer you get to 0 the
+      better but don't go over!</p>
+
+    <section>
+      <h2 id="user">Not signed in</h2>
+
+      <form id="authForm" class="nameEntry" autocomplete="off">
+        <input type="text" id="authUser" placeholder="username" required>
+        <input type="password" id="authPass" placeholder="password" required>
+        <button type="submit" id="loginButton">Sign In / Register</button>
+        <button type="button" id="logoutButton" hidden>Log Out</button>
+      </form>
+
+      <p>New accounts are created automatically on first sign in.</p>
+    </section>
+
+
+    <section id="controls" class="controls" hidden>
+      <button id="startButton">Start Round</button>
+      <button id="stopButton" disabled>Stop Timer</button>
+    </section>
+
+    <section id="timerCard" class="timerCard" hidden>
+      <h2>Timer</h2>
+      <div id="timer" class="timerValue"></div>
+    </section>
+
+    <h2 id="status" hidden>Press “Start Round”.</h2>
+
+    <form id="nameEntry" class="nameEntry" hidden>
+      <input type="text" id="yourName" placeholder="e.g., Alex, Priya, Mateo" required>
+      <button id="submitButton" type="submit">Submit Score</button>
+    </form>
+
+    <section id="board" class="board" hidden>
+      <h2>High Scores</h2>
+      <table id="highscores">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Time Left (ms)</th>
+            <th>Score</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="scoreTable"></tbody>
+      </table>
+    </section>
+  </main>
+</body>
+
+</html>

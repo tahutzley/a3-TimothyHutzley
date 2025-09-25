@@ -1,0 +1,87 @@
+:root {
+  --pico-font-family: 'Happy Monkey';
+}
+
+body {
+  background: #111;
+}
+
+h1, h2 { 
+  font-weight: 800; 
+  text-align: center; 
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.controls,
+.nameEntry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.timerCard {
+  width: 100%;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: var(--pico-spacing);
+}
+
+#timer.timerValue {
+  font-size: 96px;
+  font-weight: 800;
+}
+
+#status {
+  color: #e6edf8;
+}
+
+.nameEntry input,
+.nameEntry textarea,
+.nameEntry select {
+  width: min(320px, 80vw);
+}
+
+[hidden] { 
+  display: none !important; 
+}
+
+.board { width: 100%; }
+#highscores { width: 100%; border-collapse: collapse; }
+
+#startButton {
+  background-color: #16a34a;
+  border-color: #13833e;
+  color: #fff;
+}
+#startButton:disabled { opacity: 0.6; cursor: not-allowed; }
+
+#stopButton {
+  background-color: #dc2626;
+  border-color: #b21f1f;
+  color: #fff;
+}
+
+#submitButton,
+#loginButton {
+  background-color: #0b3d91;
+  border-color: #082f72;
+  color: #fff;
+}
+#submitButton:hover,
+
+#logoutButton {
+  background-color: #6b7280;
+  border-color: #52525b;
+  color: #fff;
+}
