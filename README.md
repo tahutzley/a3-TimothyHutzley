@@ -4,6 +4,15 @@
 **Goal**  
 Create a web app where users can sign in and play a timing game where they have to stop a 5 second timer as close to 0 as possible. They can then submit their highscores under a nickname and from there edit any entered nickname under their account or delete any entry also under their account.
 
+**Test Account With Data**
+- *Username* - The Best
+- *Password* - undefeated
+
+**Images of Site**
+![Login Page](login.png)
+![Logged in Page](loggedIn.png)
+![Leaderboard](leaderboard.png)
+
 **Challenges**  
 - Securely incorporating auth so that the stored data is scoped per user
 - Getting MongoDB Atlas to connect when attempting to deploy through Railway 
