@@ -1,136 +1,55 @@
-Assignment 3 - Persistence: Two-tier Web Application with Database, Express server, and CSS template
-===
+# One-Timer Click Game
+### Site Link: https://a3-timothyhutzley-production.up.railway.app/
+## Project Summary
+**Goal**  
+Create a web app where users can sign in and play a timing game where they have to stop a 5 second timer as close to 0 as possible. They can then submit their highscores under a nickname and from there edit any entered nickname under their account or delete any entry also under their account.
 
-Check out the [CS 4241 Guides](https://github.com/jmcuneo/cs4241-guides) for help with the technologies discussed in this assignment.
+**Challenges**  
+- Securely incorporating auth so that the stored data is scoped per user
+- Getting MongoDB Atlas to connect when attempting to deploy through Railway 
 
-This assignnment continues where we left off, extending it to use the most popular Node.js server framework (express), 
-a database (mongodb), and a CSS application framework / template of your choice (Boostrap, Material Design, Semantic UI, Pure etc.)
+**Authentication Strategy**  
+- Each user has a Username + Password with automatic account creation for the first sign in
+- Password is hashed with `bcrypt` and tracked using a `cookie-session` session cookie1
+- Chose this method as it seemed to be the simplest way to implement authentication
 
-Baseline Requirements
----
+**CSS Framework**  
+- **PicoCSS** as it has a clean design and is easy to implement as it changes the stylign of the base elements I was already mostly using  
+- **Custom CSS** for an overall darker theme, changing button colors, stlying the leaderboard table, and general layout design
 
-Your application is required to implement the following functionalities:
+**Express middleware used**  
+- `express.json()` - Parses JSON requests 
+- `express.static()` - Serves static files from `/public`  
+- `cookie-session` - provides httpOnly session cookies for a logged in state  
+- `requireAuth(req,res,next)` (*Custom Function*) - Rejects unauthenticated requests and ensures all data is scoped by user.
 
-- (15 points) a `Server`, created using Express (no alternatives will be accepted for this assignment)
-- (10 points) a `Results` functionality which shows all data associated with a logged in user (except passwords)
-- (15 points) a `Form/Entry` functionality which allows users to add, modify, and delete data items (must be all three!) associated with their user name / account.
-- Persistent data storage in between server sessions using [mongodb](https://www.mongodb.com/cloud/atlas) (you *must* use mongodb for this assignment). You can use either the [official mongodb node.js library](https://www.npmjs.com/package/mongodb) or use the [Mongoose library](https://www.npmjs.com/package/mongoose), which enables you to define formal schemas for your database. Please be aware that the course staff cannot provide in-depth support for use of Mongoose.  (15 pts.)
-- (10 points) Use of a [CSS framework or template](https://github.com/troxler/awesome-css-frameworks). This should do the bulk of your styling/CSS for you and be appropriate to your application. For example, don't use [NES.css](https://nostalgic-css.github.io/NES.css/) (which is awesome!) unless you're creating a game or some type of retro 80s site.
+## Accessibility
+1. **Descriptive, unique page title**: Added a clear page title describing the app and how it functions
 
-Your application is required to demonstrate the use of the following concepts:  
+2. **Use headings to convey structure**: Used elements such as `<h1>` for the app name and `<h2>` headings for the Auth, Controls, Timer, and High Scores sections.
 
-HTML:  
-- (5 points) HTML input tags and form fields of various flavors (`<textarea>`, `<input>`, checkboxes, radio buttons, etc.)
-- HTML that can display all data *for a particular authenticated user*. Note that this is different from the last assignnment, which required the display of all data in memory on the server.
+3. **Provide clear instructions**: Wrote brief explanation on how to play the one-timer click game and how the sign-in/automatic account creation works
 
-Note that it might make sense to have two pages for this assignment, one that handles login / authentication and one that contains the rest of your application. For example, when visiting the home page for the assignment, users could be presented with a login form. After submitting the login form, if the login is successful, they are taken to the main application. If they fail, they are sent back to the login to try again. For this assignment, it is acceptable to simply create new user accounts upon login if none exist; however, you must alert your users to this fact.  
+4. **Keep content concise**: Used short labels for the game buttons and other messages, for example, the “Start Round” and “Stop Timer” buttons and “Score saved!” message
 
-CSS:  
-- CSS styling should primarily be provided by your chosen template/framework. Oftentimes a great deal of care has been put into designing CSS templates; don't override their stylesheets unless you are extremely confident in your graphic design capabilities. The idea is to use CSS templates that give you a professional-looking design aesthetic without requiring you to be a graphic designer yourself.
+5. **Sufficient color contrast**: Created a dark theme with contrasting colors and ensured that they met the Google Lighthouse accessbility standards
 
-JavaScript:  
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server. See the [previous assignment](https://github.com/jmcuneo/a2-shortstack-a25) for reference.
+6. **Group related content with headings/spacing**: Grouped sections Auth, Controls, Timer, and Scores into clear groups separate from each other with consistent spacing
 
-Node.js:  
-- A server using Express and a persistent database (mongodb).
+7. **Design for different viewport sizes**: Added the responsive viewport meta tag and used both adaptable widths and the PicoCSS framework to ensure the layout changes for different screen sizes.
 
-General:  
-- (10 points) Your site should achieve at least 90% on the `Performance`, `Best Practices`, `Accessibility`, and `SEO` tests using Google [Lighthouse](https://developers.google.com/web/tools/lighthouse) (don't worry about the PWA test, and don't worry about scores for mobile devices). Test early and often so that fixing problems doesn't lead to suffering at the end of the assignment. 
+8. **Provide feedback for user actions**: Update different regions based on how the user interacts with the site, for example, display who the user is logged in as, change button states depending on if the round is started, and feedback is provided when scores are submitted through messages and an updated leaderboard
 
-Deliverables
----
+9. **Visible keyboard focus**: Kept default focus indicators and did not remove outlines to keep keyboard focus visible.
 
-Do the following to complete this assignment:
+10. **Identify page language**: Set `lang="en"` on the `<html>` element so the correct language profile is used.
 
-1. Implement your project with the above requirements. I'd begin by converting your A2 assignment. First, change the server to use express. Then, modify the server to use mongodb instead of storing data locally. Last but not least, implement user accounts and login. User accounts and login is often the hardest part of this assignment, so budget your time accordingly.
-2. If you developed your project locally, deploy your project to Render (unless completing the alternative server technical acheivement described below), and fill in the appropriate fields in your package.json file.
-3. Test your project to make sure that when someone goes to your main page on Render (or an alternative server), it displays correctly.
-4. Ensure that your project has the proper naming scheme `a3-FirstnameLastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a3-FirstnameLastname`.
+11. **Use semantic markup for structure**: Used elements such as `<main>`, `<section>`, semantic headings, and a `<table>` with `<thead>`/`<tbody>` to display the meaning in the markup structure
 
-Acheivements
----
+12. **Help users avoid & correct mistakes**: Included required fields, disabled invalid actions such as clicking the "Stop Timer" button before the "Start Round" button, and displayed messages for errors and to confirm user actions.
 
-Below are suggested technical and design achievements. You can use these to help boost your grade up to an A and customize the assignment to your personal interests, for a maximum twenty additional points and a maximum grade of a 100%. These are recommended acheivements, but feel free to create/implement your own... just make sure you thoroughly describe what you did in your README, why it was challenging, and how many points you think the achievement should be worth. ALL ACHIEVEMENTS MUST BE DESCRIBED IN YOUR README IN ORDER TO GET CREDIT FOR THEM.
-
-*Technical*
-- (10 points) Implement OAuth authentication, perhaps with a library like [passport.js](http://www.passportjs.org/). *You must either use Github authenticaion or provide a username/password to access a dummy account*. Course staff cannot be expected, for example, to have a personal Facebook, Google, or Twitter account to use when grading this assignment. Please contact the course staff if you have any questions about this. THIS IS THE HARDEST ACHEIVEMENT OFFERED IN WEBWARE. You have been warned!  
-- (5 points) Instead of Render, host your site on a different service. Find a service that is reputable and has a free tier. Post your findings on Slack in the #assignment3 channel. DO NOT feel compelled to purchase a paid tier from any service, although if you already have one, you are welcome to use it. Make sure to describe this a bit in your README. What was better about using the service you chose as compared to Render? What (if anything) was worse? 
-- (5 points) Get 100% (not 98%, not 99%, but 100%) in all four lighthouse tests required for this assignment.  
-
-*Design/UX*
-- (10 points) Make your site accessible using the [resources and hints available from the W3C](https://www.w3.org/WAI/). Implement/follow twelve tips from their [tips for writing](https://www.w3.org/WAI/tips/writing/), [tips for designing](https://www.w3.org/WAI/tips/designing/), and [tips for development](https://www.w3.org/WAI/tips/developing/). *Note that all twelve must require active work on your part*. For example, even though your page will most likely not have a captcha, you don't get this as one of your twelve tips to follow because you're effectively 
-getting it "for free" without having to actively change anything about your site. Contact the course staff if you have any questions about what qualifies and doesn't qualify in this regard.
-List each tip that you followed and describe what you did to follow it in your site.
-- (5 points) Describe how your site uses the CRAP principles in the Non-Designer's Design Book readings. Which element received the most emphasis (contrast) on each page? How did you use proximity to organize the visual information on your page? What design elements (colors, fonts, layouts, etc.) did you use repeatedly throughout your site? How did you use alignment to organize information and/or increase contrast for particular elements. Write a paragraph of at least 125 words *for each of four principles* (four paragraphs, 500 words in total). 
-
-
-FAQ
----
-**Q: Am I required modify my A2 submission for this assignment?**
-
-No. If you want to start fresh for A3, you are welcome to do so. The option to start with A2 is simply there as a convenience for you.
-
-**Q: Which CSS framework should I use? How do I use it?**
-
-This is for you to figure out. While we do require Express and MongoDB for this assignment, we do not require a specific CSS framework, so we are not going to be discussing a specific one. You will be responsible for choosing a CSS framework and learning how to use it.
-
-**Q: How do I keep my .env file out of my git repo?**
-
-Create a .gitignore file on your local machine and list your .env file in it. Note that while your .env file should NOT appear in your repo, you will still want to [add it to your Render project](https://render.com/docs/configure-environment-variables) so that your website runs successfully.
-
-**Q: I'm confused about how user accounts work for this assignment.**
-
-For the base requirements (discounting the achievements), it should follow this logic:
-
-1. If the user logs in and the account does not exist, create the account and inform the user the account has been created.
-2. If the user logs in and the account exists but the password is incorrect, inform the user.
-3. If the user logs in, the account exists, and the password is correct, then take the user to the page that shows the data specific to the user.
-
-Note that implementing some of the technical achievements may override this requirement, which is fine.
-
-**Q: I'm getting a syntax error when trying to connect to MongoDB using the code in the tutorial.**
-
-Your version of Node may be outdated. Check out [this link](https://stackoverflow.com/questions/77749884/session-options-session-syntaxerror-unexpected-token-mongoose-give-a) for more information.
-
-**Q: Do I have to handle multiple user accounts?**
-
-No. You only need one dummy account UNLESS you are doing the GitHub login technical achievement. Make sure you mention in your README how the user should log in!
-
-**Q: If we use OAuth for logging in, do we still need the same pattern of behavior from the website when logging in (as described above)?**
-
-Yes, insofar as the logged in user should still be taken to a page with the user's data, the login should fail for the incorrect password, and a new account should be created if the username is unrecognized.
-
-Note that if you are doing OAuth, this last part might be difficult (especially if you are doing GitHub authentication). If that's the case, then the user should be taken to a page where they can create an account for your site.
-
-**Q: Does "HTML input tags and form fields of various flavors" mean that we need to use multiple different kinds of inputs, or does it mean that we just need to use some form of input?**
-
-You should have at least two different input types for this assignment. The purpose is to show your understanding beyond the simple `input` type you saw in A2.
-
-**Q: Am I allowed to use other libraries/frameworks/etc. in this assignment?**
-
-Yes, so long as those are IN ADDITION TO Express, MongoDB, and a CSS framework of your choice. Describe in your README any additional libraries or frameworks you used for this assignment. Also remember that the staff might not be familiar with these, so we may be unable to help you if you run into technical problems.
-
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-
-Your Render (or alternative server) link e.g. http://a3-joshua-cuneo.render.me
-
-Include a very brief summary of your project here. Images are encouraged, along with concise, high-level text. Be sure to include:
-
-- the goal of the application
-- challenges you faced in realizing the application
-- what authentication strategy you chose to use and why (choosing one because it seemed the easiest to implement is perfectly acceptable)
-- what CSS framework you used and why
-  - include any modifications to the CSS framework you made via custom CSS you authored
-- a list of Express middleware packages you used and a short (one sentence) summary of what each one does. If you use a custom function, please add a little more detail about what it does.
-
-## Technical Achievements
-- **Tech Achievement 1**: I used OAuth authentication via the GitHub strategy
-
-### Design/Evaluation Achievements
-- **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative...
+## CRAP Principles
+- **Contrast** - On the site, contrast is used to direct the user without overwhelming them. For example, on the inital login page, contrasting the darker background at the top is an explanation on how the game works, followed by similar text indicating the user is not signed in. These two text sections make use of lighter text color and heavier font weight to contrast the background helping users quickly uinderstand what is going on. The login section itself is also clearly defined using outlines and a separate blue color that stands out. After signing in, the "Start Round" and "Stop Timer" buttons are green and red respectively, helping indicate the general use for each button and makign them easy to distinguish from the rest of the page. Lastly, the timer itself is also confined within a box and formatted similar to previous text but now a much larger font size, making it easy to follow as the time ticks down. 
+- **Repetition** - On the site, repetition is used to create a sense of cohesion throughout the site for the user which makes it easier to recognize the differences in each section. For styling, the site consistenly uses default PicoCSS, as well as consistent spacing and text formatting (Game xplanation, User display, Timer). Colors for both login and submitting scores are consistent providing better recognition for the functionality of differnet buttons on the site. Additionally, the leaderboard table is consistent in stlying with nothing changing between rows making it easy to find different scores. Additionally, buttons are conssitenly disabled or removed when the action is not possible, creating a sense of trust in the actions the user can commit as the ones they can't no longer appear. Lastly, messages and other feedback appear in the same format and place so the user knows where to look when it expects any messages or feedback from the site.
+- **Alignment** - On the site, alignment is used to orgnaize the displayed information into a clear path as to how the user should read it. The information on the site is all centered and goes straight down creating a clear top down reading path for the user to follow. This is established by a fixed width for the elements on the page, so no element is too long making it overwhelming or distracting. Each section has a clear header that leads into the the section itself, helping guide the user through the site. The leaderboard table itself is left-aligned making it easy for users to read through it from left to right when going through their scores. The timer that the user needs to focus on for the game is also center-aligned, making it easy to watch and stay focused on as the time ticks down. 
+- **Proximity** - On the site, proximity is used to group elements that go together and separate them from the elements that they are not associated with. When initially opening the site, there is a clear title for the site at the top with a brief description directly under it grouping them together. Under the description, is a a tightly grouped together section displaying "Not signed in" with two input boxes for a username and password, along with a sign in/register button directly below those input boxes. After signing in the user then sees a section where elements such as the "Start Round" and "Stop Timer" buttons and the timer itself are tightly grouped together to display the game. Lastly, after a small gap is the status of the game which displays the users final time remaining, along with a nickname submission box for the leaderboard, and the leaderboard itself, creating the final section of the site where all the scores are displayed.
