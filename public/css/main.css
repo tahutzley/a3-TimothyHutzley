@@ -13,6 +13,11 @@ h1, h2 {
   color: #ffffff;
 }
 
+p {
+  color: #cfe3ff;
+  font-weight: 500;
+}
+
 .app {
   max-width: 720px;
   margin: 0 auto;
@@ -59,7 +64,6 @@ h1, h2 {
   border: 2px solid #93c5fd;
   border-radius: 10px;
 }
-
 [hidden] {
   display: none !important;
 }
