@@ -3,12 +3,14 @@
 }
 
 body {
-  background: #111;
+  background: #222222;
+  color: #ffffff;
 }
 
-h1, h2 { 
-  font-weight: 800; 
-  text-align: center; 
+h1, h2 {
+  font-weight: 800;
+  text-align: center;
+  color: #ffffff;
 }
 
 .app {
@@ -32,56 +34,112 @@ h1, h2 {
 
 .timerCard {
   width: 100%;
-  border: 2px solid #333;
+  border: 2px solid #4b5563;
   border-radius: 12px;
   padding: var(--pico-spacing);
+  background: #0e1624;
 }
 
 #timer.timerValue {
   font-size: 96px;
   font-weight: 800;
+  color: #ffffff;
 }
 
 #status {
-  color: #e6edf8;
+  color: #eaf2ff;
 }
 
 .nameEntry input,
 .nameEntry textarea,
 .nameEntry select {
   width: min(320px, 80vw);
+  background: #0a121f;
+  color: #ffffff;
+  border: 2px solid #93c5fd;
+  border-radius: 10px;
 }
 
-[hidden] { 
-  display: none !important; 
+[hidden] {
+  display: none !important;
 }
 
 .board { width: 100%; }
-#highscores { width: 100%; border-collapse: collapse; }
+
+#highscores {
+  width: 100%;
+  border-collapse: collapse;
+  background: #0d1522;
+}
+
+#highscores thead th {
+  background: #0a2345;
+  color: #ffffff;
+}
+
+#highscores th,
+#highscores td {
+  border: 1px solid #93c5fd;
+  padding: 10px 12px;
+  text-align: left;
+  color: #ffffff;
+}
+
+#highscores tbody tr:nth-child(odd) {
+  background: #0f1a2e;
+}
+
+#highscores tbody tr:nth-child(even) {
+  background: #0c1728;
+}
 
 #startButton {
   background-color: #16a34a;
-  border-color: #13833e;
-  color: #fff;
+  border-color: #0b5f2a;
+  color: #ffffff;
 }
-#startButton:disabled { opacity: 0.6; cursor: not-allowed; }
+
+#startButton:hover {
+  background-color: #128d40;
+  border-color: #0a5125;
+}
+
+#startButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 #stopButton {
   background-color: #dc2626;
-  border-color: #b21f1f;
-  color: #fff;
+  border-color: #8a1717;
+  color: #ffffff;
+}
+
+#stopButton:hover {
+  background-color: #c81e1e;
+  border-color: #7a1414;
 }
 
 #submitButton,
 #loginButton {
   background-color: #0b3d91;
-  border-color: #082f72;
-  color: #fff;
+  border-color: #072b66;
+  color: #ffffff;
 }
+
 #submitButton:hover,
+#loginButton:hover {
+  background-color: #0a357f;
+  border-color: #062557;
+}
 
 #logoutButton {
-  background-color: #6b7280;
-  border-color: #52525b;
-  color: #fff;
+  background-color: #4b5563;
+  border-color: #2f3640;
+  color: #ffffff;
+}
+
+#logoutButton:hover {
+  background-color: #3f4753;
+  border-color: #2a2f37;
 }
